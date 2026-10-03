@@ -1,0 +1,126 @@
+{
+  "name": "AuditLog",
+  "type": "object",
+  "properties": {
+    "module": {
+      "type": "string",
+      "enum": [
+        "Tasks",
+        "Sheets",
+        "Tailor",
+        "Auth"
+      ],
+      "title": "Module"
+    },
+    "action": {
+      "type": "string",
+      "title": "Action"
+    },
+    "entity_id": {
+      "type": "string",
+      "title": "Entity ID"
+    },
+    "entity_name": {
+      "type": "string",
+      "title": "Entity Name"
+    },
+    "actor_id": {
+      "type": "string",
+      "title": "Actor User ID"
+    },
+    "actor_name": {
+      "type": "string",
+      "title": "Actor Name"
+    },
+    "details": {
+      "type": "string",
+      "title": "Details"
+    },
+    "store_id": {
+      "type": "string",
+      "title": "Store ID"
+    }
+  },
+  "required": [
+    "module",
+    "action"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mis"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "tailoring_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "tailoring_operator"
+          }
+        }
+      ]
+    },
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,413 @@
+{
+  "name": "Task",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "title": "Title"
+    },
+    "description": {
+      "type": "string",
+      "title": "Description"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "Low",
+        "Medium",
+        "High",
+        "Urgent"
+      ],
+      "default": "Medium"
+    },
+    "category": {
+      "type": "string",
+      "title": "Category/Group",
+      "default": "General"
+    },
+    "store_id": {
+      "type": "string",
+      "title": "Store ID"
+    },
+    "store_name": {
+      "type": "string",
+      "title": "Store Name"
+    },
+    "assigned_to_id": {
+      "type": "string",
+      "title": "Assigned To User ID"
+    },
+    "assigned_to_name": {
+      "type": "string",
+      "title": "Assigned To Name"
+    },
+    "location_tag": {
+      "type": "string",
+      "title": "Location Tag"
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Start Date & Time"
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date-time",
+      "title": "End / Due Date & Time"
+    },
+    "must_finish_before_opening": {
+      "type": "boolean",
+      "default": false
+    },
+    "buzzer": {
+      "type": "boolean",
+      "title": "Buzzer Alert",
+      "default": false
+    },
+    "validations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Video",
+          "Audio",
+          "Image",
+          "Description",
+          "File",
+          "Geo Tag"
+        ]
+      },
+      "title": "Ask Validations",
+      "default": []
+    },
+    "required_proof_photos": {
+      "type": "number",
+      "title": "Required Proof Photos",
+      "default": 0
+    },
+    "require_video_proof": {
+      "type": "boolean",
+      "title": "Require Video Proof",
+      "default": false
+    },
+    "require_geo_tag_proof": {
+      "type": "boolean",
+      "title": "Require Geo Tag Photo Proof",
+      "default": false
+    },
+    "video_proof_uri": {
+      "type": "string",
+      "title": "Video Proof URI"
+    },
+    "geo_tag_photo_uri": {
+      "type": "string",
+      "title": "Geo Tag Photo URI"
+    },
+    "on_time": {
+      "type": "boolean",
+      "title": "Completed On Time",
+      "default": false
+    },
+    "variance_minutes": {
+      "type": "number",
+      "title": "Variance (minutes, +late / -early)"
+    },
+    "reminder_minutes": {
+      "type": "number",
+      "title": "Reminder (minutes before due)"
+    },
+    "geo_fence": {
+      "type": "boolean",
+      "title": "Geo Fence Enabled",
+      "default": false
+    },
+    "highlight": {
+      "type": "boolean",
+      "title": "Highlight / Starred",
+      "default": false
+    },
+    "active": {
+      "type": "boolean",
+      "title": "Template Active (recurring)",
+      "default": false
+    },
+    "checklist": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "done": {
+            "type": "boolean",
+            "default": false
+          },
+          "required": {
+            "type": "boolean",
+            "default": false
+          },
+          "requires_photo": {
+            "type": "boolean",
+            "default": false
+          },
+          "validations": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "Video",
+                "Audio",
+                "Image",
+                "File",
+                "Text",
+                "Dropdown",
+                "Geo Tag"
+              ]
+            },
+            "default": []
+          },
+          "field_type": {
+            "type": "string",
+            "enum": [
+              "Text",
+              "Dropdown",
+              "Image",
+              "File"
+            ],
+            "default": "Text"
+          }
+        }
+      },
+      "title": "Checklist",
+      "default": []
+    },
+    "subtasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "done": {
+            "type": "boolean",
+            "default": false
+          }
+        }
+      },
+      "title": "Sub Tasks",
+      "default": []
+    },
+    "proof_photos": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "title": "Proof Photos",
+      "default": []
+    },
+    "proof_note": {
+      "type": "string",
+      "title": "Proof Note"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Pending",
+        "In Progress",
+        "Done",
+        "Approved",
+        "Rejected",
+        "Overdue",
+        "Cancelled"
+      ],
+      "default": "Pending"
+    },
+    "cannot_do_reason": {
+      "type": "string",
+      "title": "Cannot Do Reason"
+    },
+    "reject_reason": {
+      "type": "string",
+      "title": "Reject Reason"
+    },
+    "recurring": {
+      "type": "boolean",
+      "default": false
+    },
+    "repeat_type": {
+      "type": "string",
+      "enum": [
+        "None",
+        "Daily",
+        "Weekdays",
+        "Weekly",
+        "Monthly",
+        "Every N Months"
+      ],
+      "default": "None"
+    },
+    "repeat_days": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "title": "Repeat Days",
+      "default": []
+    },
+    "repeat_interval_months": {
+      "type": "number",
+      "title": "Repeat Interval (months)"
+    },
+    "template_name": {
+      "type": "string",
+      "title": "Template Name"
+    },
+    "source_template_id": {
+      "type": "string",
+      "title": "Source Template ID (generated instances)"
+    },
+    "generated_for_date": {
+      "type": "string",
+      "title": "Generated For Date (YYYY-MM-DD)"
+    },
+    "shift": {
+      "type": "string",
+      "enum": [
+        "Morning",
+        "Afternoon",
+        "Opening",
+        "Closing",
+        "Nightly",
+        "None"
+      ],
+      "default": "None"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Completed At"
+    },
+    "approved_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Approved At"
+    },
+    "approved_by_id": {
+      "type": "string",
+      "title": "Approved By ID"
+    },
+    "created_by_id": {
+      "type": "string",
+      "title": "Created By ID"
+    },
+    "created_by_name": {
+      "type": "string",
+      "title": "Created By Name"
+    }
+  },
+  "required": [
+    "title",
+    "store_id"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mis"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "manager"
+          }
+        }
+      ]
+    },
+    "read": {
+      "$or": [
+        {
+          "data.assigned_to_id": "{{user.id}}"
+        },
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mis"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "$and": [
+            {
+              "data.assigned_to_id": "{{user.id}}"
+            },
+            {
+              "data.status": {
+                "$nin": [
+                  "Approved",
+                  "Cancelled"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mis"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

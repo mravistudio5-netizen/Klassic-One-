@@ -1,0 +1,1 @@
+{"name": "RecurringTaskGenerator", "entry": "entry.ts", "automations": [{"type": "scheduled", "name": "recurring_task_generator", "schedule_mode": "recurring", "schedule_type": "cron", "cron_expression": "0 1 * * *"}]}

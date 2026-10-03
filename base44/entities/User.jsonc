@@ -1,0 +1,64 @@
+{
+  "name": "User",
+  "type": "object",
+  "properties": {
+    "role": {
+      "type": "string",
+      "enum": [
+        "owner",
+        "admin",
+        "mis",
+        "manager",
+        "tailoring_manager",
+        "tailoring_operator"
+      ],
+      "default": "manager"
+    },
+    "manager_id": {
+      "type": "string",
+      "title": "Manager ID (e.g. M-002)"
+    },
+    "mobile": {
+      "type": "string",
+      "title": "Mobile Number"
+    },
+    "google_email": {
+      "type": "string",
+      "title": "Google Email (for Drive access)"
+    },
+    "store_id": {
+      "type": "string",
+      "title": "Primary Store ID"
+    },
+    "department_id": {
+      "type": "string",
+      "title": "Department ID"
+    },
+    "department": {
+      "type": "string",
+      "title": "Department Name"
+    },
+    "shift": {
+      "type": "string",
+      "enum": [
+        "Morning",
+        "Afternoon",
+        "General"
+      ],
+      "default": "General"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    },
+    "language": {
+      "type": "string",
+      "enum": [
+        "en",
+        "hi",
+        "mr"
+      ],
+      "default": "en"
+    }
+  }
+}

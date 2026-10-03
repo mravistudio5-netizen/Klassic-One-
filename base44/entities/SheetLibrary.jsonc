@@ -1,0 +1,121 @@
+{
+  "name": "SheetLibrary",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Sheet Name"
+    },
+    "link": {
+      "type": "string",
+      "title": "Google Sheet Link"
+    },
+    "purpose": {
+      "type": "string",
+      "title": "Purpose"
+    },
+    "store_id": {
+      "type": "string",
+      "title": "Store ID"
+    },
+    "store_name": {
+      "type": "string",
+      "title": "Store Name"
+    },
+    "all_stores": {
+      "type": "boolean",
+      "default": false
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Stock",
+        "Purchase",
+        "Staff",
+        "Accounts",
+        "Reports",
+        "Other"
+      ],
+      "default": "Other"
+    },
+    "sensitivity": {
+      "type": "string",
+      "enum": [
+        "Low",
+        "Medium",
+        "High"
+      ],
+      "default": "Low"
+    },
+    "notes": {
+      "type": "string",
+      "title": "Notes"
+    },
+    "archived": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "name",
+    "link"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "name": "RolePermission",
+  "type": "object",
+  "properties": {
+    "role": {
+      "type": "string",
+      "title": "Role"
+    },
+    "modules": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "tasks",
+          "myTasks",
+          "sheets",
+          "tailor",
+          "reports",
+          "checklists",
+          "admin"
+        ]
+      },
+      "default": []
+    },
+    "matrix": {
+      "type": "object",
+      "title": "Permission Matrix",
+      "description": "Per-module, per-action toggles. Keyed by module key; each value maps action -> boolean.",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "create": {
+            "type": "boolean",
+            "default": false
+          },
+          "read": {
+            "type": "boolean",
+            "default": false
+          },
+          "update": {
+            "type": "boolean",
+            "default": false
+          },
+          "delete": {
+            "type": "boolean",
+            "default": false
+          },
+          "export": {
+            "type": "boolean",
+            "default": false
+          }
+        }
+      },
+      "default": {}
+    },
+    "can_assign_cross_department": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "role"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "read": null,
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

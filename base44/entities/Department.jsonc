@@ -1,0 +1,82 @@
+{
+  "name": "Department",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Department Name"
+    },
+    "code": {
+      "type": "string",
+      "title": "Code"
+    },
+    "store_id": {
+      "type": "string",
+      "title": "Store ID"
+    },
+    "store_name": {
+      "type": "string",
+      "title": "Store Name"
+    },
+    "head_id": {
+      "type": "string",
+      "title": "Head User ID"
+    },
+    "head_name": {
+      "type": "string",
+      "title": "Head Name"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "read": null,
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

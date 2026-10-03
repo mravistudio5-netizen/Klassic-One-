@@ -1,0 +1,132 @@
+{
+  "name": "Tailor",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Tailor Name"
+    },
+    "mobile": {
+      "type": "string",
+      "title": "Mobile"
+    },
+    "address": {
+      "type": "string",
+      "title": "Address"
+    },
+    "store_id": {
+      "type": "string",
+      "title": "Store ID"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "tailoring_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "tailoring_operator"
+          }
+        }
+      ]
+    },
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "tailoring_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "tailoring_operator"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "tailoring_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "tailoring_operator"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "name": "Store",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Store Name"
+    },
+    "code": {
+      "type": "string",
+      "title": "Store Code"
+    },
+    "city": {
+      "type": "string",
+      "title": "City"
+    },
+    "address": {
+      "type": "string",
+      "title": "Address"
+    },
+    "opening_time": {
+      "type": "string",
+      "title": "Opening Time",
+      "default": "10:00"
+    },
+    "locations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "title": "Location Tags",
+      "default": [
+        "Basement",
+        "Ground Floor",
+        "Floor 1",
+        "Floor 2",
+        "Floor 3",
+        "4th Floor Warehouse",
+        "Washroom",
+        "Terrace"
+      ]
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "read": null,
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

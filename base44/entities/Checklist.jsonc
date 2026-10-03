@@ -1,0 +1,148 @@
+{
+  "name": "Checklist",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Checklist Name"
+    },
+    "store_id": {
+      "type": "string",
+      "title": "Store ID"
+    },
+    "store_name": {
+      "type": "string",
+      "title": "Store Name"
+    },
+    "manager_id": {
+      "type": "string",
+      "title": "Assigned Manager ID"
+    },
+    "manager_name": {
+      "type": "string",
+      "title": "Assigned Manager Name"
+    },
+    "all_managers": {
+      "type": "boolean",
+      "title": "Assign to all managers",
+      "default": false
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "required": {
+            "type": "boolean",
+            "default": false
+          }
+        }
+      },
+      "title": "Checklist Items",
+      "default": []
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    },
+    "created_by_id": {
+      "type": "string",
+      "title": "Created By ID"
+    },
+    "created_by_name": {
+      "type": "string",
+      "title": "Created By Name"
+    }
+  },
+  "required": [
+    "name",
+    "store_id"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mis"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "manager"
+          }
+        }
+      ]
+    },
+    "read": {
+      "$or": [
+        {
+          "data.store_id": "{{user.data.store_id}}"
+        },
+        {
+          "data.manager_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mis"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mis"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

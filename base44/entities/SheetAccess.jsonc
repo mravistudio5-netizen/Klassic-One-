@@ -1,0 +1,125 @@
+{
+  "name": "SheetAccess",
+  "type": "object",
+  "properties": {
+    "sheet_id": {
+      "type": "string",
+      "title": "Sheet ID"
+    },
+    "sheet_name": {
+      "type": "string",
+      "title": "Sheet Name"
+    },
+    "manager_id": {
+      "type": "string",
+      "title": "Manager User ID"
+    },
+    "manager_name": {
+      "type": "string",
+      "title": "Manager Name"
+    },
+    "manager_email": {
+      "type": "string",
+      "title": "Manager Google Email"
+    },
+    "access_level": {
+      "type": "string",
+      "enum": [
+        "View",
+        "Comment",
+        "Edit"
+      ],
+      "default": "View"
+    },
+    "store_id": {
+      "type": "string",
+      "title": "Store ID"
+    },
+    "expiry_date": {
+      "type": "string",
+      "format": "date",
+      "title": "Expiry Date"
+    },
+    "reason": {
+      "type": "string",
+      "title": "Reason"
+    },
+    "favourite": {
+      "type": "boolean",
+      "default": false
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "sheet_id",
+    "manager_id",
+    "access_level"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "read": {
+      "$or": [
+        {
+          "data.manager_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.manager_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

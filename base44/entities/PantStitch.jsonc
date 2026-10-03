@@ -1,0 +1,240 @@
+{
+  "name": "PantStitch",
+  "type": "object",
+  "properties": {
+    "bill_number": {
+      "type": "string",
+      "title": "Bill Number"
+    },
+    "customer_name": {
+      "type": "string",
+      "title": "Customer Name"
+    },
+    "mobile_number": {
+      "type": "string",
+      "title": "Mobile Number"
+    },
+    "length": {
+      "type": "number",
+      "title": "Length (in)"
+    },
+    "waist": {
+      "type": "number",
+      "title": "Waist (in)"
+    },
+    "seat_hip": {
+      "type": "number",
+      "title": "Seat/Hip (in)"
+    },
+    "thigh": {
+      "type": "number",
+      "title": "Thigh (in)"
+    },
+    "knee": {
+      "type": "number",
+      "title": "Knee (in)"
+    },
+    "bottom": {
+      "type": "number",
+      "title": "Bottom (in)"
+    },
+    "rise": {
+      "type": "number",
+      "title": "Rise/Crotch (in)"
+    },
+    "fit_type": {
+      "type": "string",
+      "enum": [
+        "Slim",
+        "Regular",
+        "Relaxed"
+      ],
+      "default": "Regular"
+    },
+    "notes": {
+      "type": "string",
+      "title": "Special Instructions"
+    },
+    "cloth_metres": {
+      "type": "number",
+      "title": "Cloth Metres"
+    },
+    "cloth_photo_uri": {
+      "type": "string",
+      "title": "Cloth Photo URI"
+    },
+    "time_limit_hours": {
+      "type": "number",
+      "enum": [
+        6,
+        12,
+        24,
+        48
+      ],
+      "default": 24
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Received",
+        "Given to Tailor",
+        "Completed",
+        "Delivered"
+      ],
+      "default": "Received"
+    },
+    "tailor_id": {
+      "type": "string",
+      "title": "Tailor ID"
+    },
+    "tailor_name": {
+      "type": "string",
+      "title": "Tailor Name"
+    },
+    "given_to_tailor_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Given To Tailor At"
+    },
+    "store_id": {
+      "type": "string",
+      "title": "Store ID"
+    },
+    "received_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Received At (server time)"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Completed At"
+    },
+    "delivered_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Delivered At"
+    },
+    "on_time": {
+      "type": "boolean",
+      "title": "Finished On Time"
+    },
+    "operator_id": {
+      "type": "string",
+      "title": "Operator ID"
+    },
+    "operator_name": {
+      "type": "string",
+      "title": "Operator Name"
+    }
+  },
+  "required": [
+    "bill_number",
+    "customer_name",
+    "time_limit_hours",
+    "store_id"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "tailoring_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "tailoring_operator"
+          }
+        }
+      ]
+    },
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "tailoring_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "tailoring_operator"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "tailoring_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "tailoring_operator"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "owner"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}
